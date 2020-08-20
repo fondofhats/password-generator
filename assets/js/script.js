@@ -7,8 +7,6 @@ var alphaUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M
 
 // Input variables 
 var pwLength=0;
-
-
 var passwordCharacters = [];
 
 
@@ -17,6 +15,8 @@ function generatePassword() {
   // console.log("pwLength: " + pwLength);  
   GetPasswordRequirements();
   // console.log (passwordCharacters);
+
+  // Build Password using random characters
   var newUserPassword = function(){
     var userPassword = "";
     for(var i=0; i<pwLength;i++) {
@@ -41,6 +41,7 @@ function writePassword() {
 
 }
 
+// Set Password Length and Test values
 function SetPasswordLength() {
   getPasswordLength();
   // while getPasswordLength() < 8 || getPasswordLength() > 128 keep getting length.
@@ -54,6 +55,7 @@ function getPasswordLength (){
   pwLength = parseInt(window.prompt("Enter Password Lenght (8-128 characters)."));
 }
 
+// Build the avalible characters array
 function BuildPasswordCharacterArray() {
   var confirmSpecialCharacter = confirm("Click OK to confirm if you would like to include special characters");
   var confirmNumericCharacter = confirm("Click OK to confirm if you would like to include numeric characters");    
@@ -74,6 +76,7 @@ function BuildPasswordCharacterArray() {
   }
 }
 
+// Get Password specifics from user to Build character array
 function GetPasswordRequirements() {
   BuildPasswordCharacterArray();
   while(passwordCharacters.length==0){
@@ -81,15 +84,6 @@ function GetPasswordRequirements() {
     BuildPasswordCharacterArray();
   }
 }
-
-// function BuildPassword() {
-//   var userPassword = "";
-//   for(var i=0; i<pwLength;i++) {
-//     userPassword += passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
-//   }
-//   // console.log(userPassword);
-//   return userPassword;
-// }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);

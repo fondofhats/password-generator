@@ -17,7 +17,15 @@ function generatePassword() {
   // console.log("pwLength: " + pwLength);  
   GetPasswordRequirements();
   // console.log (passwordCharacters);
-  return BuildPassword();
+  var newUserPassword = function(){
+    var userPassword = "";
+    for(var i=0; i<pwLength;i++) {
+      userPassword += passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
+    }
+    // console.log(userPassword);
+    return userPassword;
+  };
+  return newUserPassword();
 }
 
 // Get references to the #generate element
@@ -74,14 +82,14 @@ function GetPasswordRequirements() {
   }
 }
 
-function BuildPassword() {
-  var userPassword = "";
-  for(var i=0; i<pwLength;i++) {
-    userPassword += passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
-  }
-  // console.log(userPassword);
-  return userPassword;
-}
+// function BuildPassword() {
+//   var userPassword = "";
+//   for(var i=0; i<pwLength;i++) {
+//     userPassword += passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
+//   }
+//   // console.log(userPassword);
+//   return userPassword;
+// }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);

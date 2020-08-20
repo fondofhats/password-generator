@@ -39,4 +39,4 @@ The remote site is used for display and hosted on GitHub Pages
 
 ### Screenshot
 
-![Portfolio Screenshot](https://raw.githubusercontent.com/fondofhats/password-generator/master/password-generator-screenshot.jpg)
+![Portfolio Screenshot](https://raw.githubusercontent.com/fondofhats/password-generator/master/password-generator-screenshot.png)

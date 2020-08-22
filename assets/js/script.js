@@ -5,16 +5,7 @@ const specialChar = "!%&,*+-./<>?~";
 const alphaLower = "abcdefghijklmnopqrstuvwxyz";
 const alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-// Input variables 
-
-
-
-
 function generatePassword() {
-//  SetPasswordLength();
-  // console.log("pwLength: " + pwLength);  
-//  BuildPasswordCharacterArray();
-  // console.log (passwordCharacters);
 
   // Build Password using random characters
   var newUserPassword = function(n,str){
@@ -22,11 +13,9 @@ function generatePassword() {
     for(var i=0; i<n;i++) {
       userPassword += str[Math.floor(Math.random() * str.length)];
     }
-    console.log("userPassword: " + userPassword);
     return userPassword;
   };
-  //console.log("Password Length: " + SetPasswordLength());
-  //console.log("Password String: " + BuildPasswordCharacterArray());
+
   return newUserPassword(SetPasswordLength(),BuildPasswordCharacterArray());
 }
 

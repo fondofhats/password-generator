@@ -1,7 +1,7 @@
 // Assignment code here
 // Password digits arrays
 const number = "0123456789";
-const specialChar = "!%&,*+-./<>?~";
+const specialChar = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 const alphaLower = "abcdefghijklmnopqrstuvwxyz";
 const alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 

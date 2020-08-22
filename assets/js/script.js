@@ -1,31 +1,33 @@
 // Assignment code here
 // Password digits arrays
-var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var specialChar = ["!", "%", "&", ",", "*", "+", "-", ".", "/", "<", ">", "?","~"];
-var alphaLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var alphaUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+const number = "0123456789";
+const specialChar = "!%&,*+-./<>?~";
+const alphaLower = "abcdefghijklmnopqrstuvwxyz";
+const alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 // Input variables 
-var pwLength=0;
-var passwordCharacters = [];
+
+
 
 
 function generatePassword() {
-  SetPasswordLength();
+//  SetPasswordLength();
   // console.log("pwLength: " + pwLength);  
-  GetPasswordRequirements();
+//  BuildPasswordCharacterArray();
   // console.log (passwordCharacters);
 
   // Build Password using random characters
-  var newUserPassword = function(){
+  var newUserPassword = function(n,str){
     var userPassword = "";
-    for(var i=0; i<pwLength;i++) {
-      userPassword += passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
+    for(var i=0; i<n;i++) {
+      userPassword += str[Math.floor(Math.random() * str.length)];
     }
-    // console.log(userPassword);
+    console.log("userPassword: " + userPassword);
     return userPassword;
   };
-  return newUserPassword();
+  //console.log("Password Length: " + SetPasswordLength());
+  //console.log("Password String: " + BuildPasswordCharacterArray());
+  return newUserPassword(SetPasswordLength(),BuildPasswordCharacterArray());
 }
 
 // Get references to the #generate element
@@ -43,46 +45,49 @@ function writePassword() {
 
 // Set Password Length and Test values
 function SetPasswordLength() {
-  getPasswordLength();
-  // while getPasswordLength() < 8 || getPasswordLength() > 128 keep getting length.
-  while(pwLength<8 || pwLength>128){
-    window.alert("Password must be more than 8 characters and less than 128 characters.");
-    getPasswordLength();
-  }
-}
+  var pwLength=0;
+  var valid=false;
 
-function getPasswordLength (){
-  pwLength = parseInt(window.prompt("Enter Password Lenght (8-128 characters)."));
+  while(!valid){
+    pwLength = parseInt(window.prompt("Enter Password Lenght (8-128 characters)."));
+    
+    if(pwLength >=8 && pwLength <= 128){
+      valid=true;
+      return pwLength;
+    }
+    else{
+      window.alert("Password must be more than 8 characters and less than 128 characters.");
+    }
+  }
+
 }
 
 // Build the avalible characters array
 function BuildPasswordCharacterArray() {
-  var confirmSpecialCharacter = confirm("Click OK to confirm if you would like to include special characters");
-  var confirmNumericCharacter = confirm("Click OK to confirm if you would like to include numeric characters");    
-  var confirmLowerCase = confirm("Click OK to confirm if you would like to include lowercase characters");
-  var confirmUpperCase = confirm("Click OK to confirm if you would like to include uppercase characters");
-
-  if(confirmSpecialCharacter) {
-    passwordCharacters = passwordCharacters.concat(specialChar);
+  var passwordCharacters = "";
+  while(passwordCharacters.length<1){
+    var confirmSpecialCharacter = confirm("Click OK to confirm if you would like to include special characters");
+    var confirmNumericCharacter = confirm("Click OK to confirm if you would like to include numeric characters");    
+    var confirmLowerCase = confirm("Click OK to confirm if you would like to include lowercase characters");
+    var confirmUpperCase = confirm("Click OK to confirm if you would like to include uppercase characters");
+  
+    if(confirmSpecialCharacter) {
+      passwordCharacters = passwordCharacters.concat(specialChar);
+    }
+    if(confirmLowerCase) {
+      passwordCharacters = passwordCharacters.concat(alphaLower);
+    }
+    if(confirmUpperCase) {
+      passwordCharacters = passwordCharacters.concat(alphaUpper);
+    }
+    if(confirmNumericCharacter) {
+      passwordCharacters = passwordCharacters.concat(number);
+    }
+    if(passwordCharacters.length == 0) {
+      alert("You must select at least one character type!");
+    }
   }
-  if(confirmLowerCase) {
-    passwordCharacters = passwordCharacters.concat(alphaLower);
-  }
-  if(confirmUpperCase) {
-    passwordCharacters = passwordCharacters.concat(alphaUpper);
-  }
-  if(confirmNumericCharacter) {
-    passwordCharacters = passwordCharacters.concat(number);
-  }
-}
-
-// Get Password specifics from user to Build character array
-function GetPasswordRequirements() {
-  BuildPasswordCharacterArray();
-  while(passwordCharacters.length==0){
-    window.alert("You must select at least one character type!");
-    BuildPasswordCharacterArray();
-  }
+  return passwordCharacters;
 }
 
 // Add event listener to generate button
